@@ -61,7 +61,7 @@ module.exports = (app) => {
   // Fetch urls for single user
   app.post("/api/fetchUrl", async (req, res) => {
     const { email } = req.body;
-    const result = await URLs.find({ email }).exec();
+    const result = await URLs.find({ email }).sort({ createdAt: -1 }).exec();
 
     if (result) {
       return res.status(200).send(result);
